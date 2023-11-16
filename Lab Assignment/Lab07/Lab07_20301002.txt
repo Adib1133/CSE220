@@ -1,0 +1,97 @@
+#===============================================
+#===============================================
+#Name- Moinul Hossain Bhuiyan
+#Id- 20301002
+# CSE 220 Section-06
+#Lab Assignment 07
+#===============================================
+#===============================================
+
+#Task 01
+#Code Started
+
+class KeyIndex(object):
+    def __init__(self,rdr):
+        self.k = []
+        self.k = [0 for p in range(len(rdr))]
+        i = 0
+        while i < len(rdr):
+            self.k[i] = rdr[i]
+            i += 1
+    def search(self,val): 
+        if val in self.k:
+            return True
+        else:
+            return False
+    def sort(self):
+        i = 0
+        while i < len(self.k) - 1:
+            j = 0
+            while j < len(self.k) - i - 1:
+                if self.k[j] > self.k[j+1]:
+                    t = self.k[j]
+                    self.k[j] = self.k[j + 1]
+                    self.k[j + 1] = t
+                j += 1
+            i += 1
+        return self.k
+lst = []
+n = int(input("Enter number of elements of the desired array: "))
+for i in range(0, n):
+    ele = int(input("Input the numbers serially to create an Array: "))
+    lst.append(ele)
+print("The Given Array Is: ",lst)
+obj = KeyIndex(lst)
+n= int(input("Enter the number you want to search: "))
+result = obj.search(n)
+print("Is The number",n, "present in The Array?(True/False): ",result)
+print("And The Sorted Array is: ",obj.sort())
+
+
+#===============================================
+
+#Task02
+#Code Started
+
+class Hashtable:
+    def __init__(self):
+        self.size = 9
+        self.gta = [0] * self.size
+    def __str__(self):
+        return str(self.gta)
+    def hash(self, key):
+        c = 0
+        vl = "AEIOU"
+        num = "0123456789"
+        for i in key:
+            if i not in num and i not in vl:
+                c = c+ 1
+        sum_of_num = 0
+        for item in key:
+            if item in num:
+                sum_of_num = sum_of_num + int(item)
+        return ((c*24)+sum_of_num) % 9
+    def add(self, data):
+        rvn = self.hash(data)
+        if self.gta[rvn] == 0:
+            self.gta[rvn] = data
+        else:
+            i = 0
+            flag = False
+            while not flag:
+                rdr = (rvn + i) % 9
+                if self.gta[rdr] == 0:
+                    self.gta[rdr] = data
+                    flag = True
+                else:
+                    i = i + 1
+test = Hashtable()
+a=input("Enter The String(Without The Quote Sign): ")
+test.add(a)
+print(test)
+
+#===============================================
+#The End
+#===============================================
+
+

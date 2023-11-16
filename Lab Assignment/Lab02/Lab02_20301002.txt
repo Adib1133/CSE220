@@ -1,0 +1,382 @@
+#===============================================
+#===============================================
+#Name- Moinul Hossain Bhuiyan
+#Id- 20301002
+# CSE 220 Section-06
+#Lab Assignment 02
+#===============================================
+#===============================================
+
+#Task01=(I & II)
+#Code Started
+
+class Node:
+    def __init__(self,element,n=None):
+        self.element=element
+        self.next=n
+class MyList:
+    head = None 
+#The next abstract parts of task 1(II)'s are included in the task 2's First steps
+
+
+#===============================================
+
+#Task02 = 01(a)
+#Code Started
+#The first step of this task is same as Task(I)
+
+class Node:
+    def __init__(self,element,n=None):
+        self.element=element
+        self.next=n
+class MyList:
+    head = None
+    def __init__(self,a):
+        self.head=None
+        Next = None
+        
+        if a==None:
+            self.head=None
+            
+        elif isinstance (a, list):
+            for i in range (0, len(a)):
+                new= Node(a[i],None)
+                if self.head==None:
+                    self.head=new
+                    Next =self.head
+                else:
+                    Next.next=new
+                    Next=new    
+        elif isinstance (a, MyList):
+            self.head=None
+            Next=None
+            new=a.head
+            while(new is not None):
+                newNode=Node(new.element,None)
+                if(self.head==None):
+                    self.head=newNode
+                    Next=newNode
+                else:
+                    Next.next=newNode
+                    Next=newNode
+                new=new.next
+        else:
+            raise Exception("The Input is Invalid Input")
+
+#===============================================
+
+#Task02 = 02
+#Code Started
+
+def showList(self):
+        if self.head==None:
+            print("EmptyList")
+        else:
+            newcell = self.head
+            while newcell != None:
+                print(newcell.element, end=" ")
+                
+                newcell=newcell.next
+
+
+#===============================================
+
+#Task02 = 03
+#Code Started
+
+def isEmpty(self):
+        if self.head == None:
+            return True
+        else:
+            return False
+
+#===============================================
+
+#Task02 = 04
+#Code Started
+
+def clear(self):
+        newcell = self.head
+        while newcell != None:
+            newcell.element=None
+            newcell=newcell.next
+        newcell=self.head
+        return newcell.element
+
+#===============================================
+
+#Task02 = 05
+#Code Started
+
+def  insert(self, newElement):
+        new =self.head
+        
+        while new!= None:
+            
+            if new.element == newElement:
+                print("The element already exists From The First Insertion")
+                break
+            elif new.next == None:
+                newNode= Node(newElement)
+                new.next=newNode
+                break
+            
+            new=new.next
+
+#===============================================
+
+#Task02 = 06
+#Code Started
+
+def insert2(self, newElement, index):
+        count = 0
+        newcell = self.head
+        while newcell is not None:
+            count = count + 1
+            newcell = newcell.next
+        if(index<0 or index>=count):
+            raise Exception("Invalid index")
+        if (index==0):
+          gdh=Node(newElement)
+          gdh.next = self.head
+          head = gdh
+        
+        elif index > 0 and index < count:
+          i=0
+          while newcell !=None:
+            if i == index - 1:
+              gdh=Node(newElement)
+              gdh.next = newcell.Next
+              newcell.next = gdh
+            i+= 1
+            newcell = newcell.next           
+       
+#===============================================
+
+#Task02 = 07
+#Code Started
+
+def remove(self, deletekey):
+        count = 0
+        newcell = self.head
+        while newcell is not None:
+            count = count + 1
+            newcell = newcell.next
+        if(deletekey<0 or deletekey>=count):
+            raise Exception("Invalid index")
+        removedNode = (0)
+        newcell = self.head
+        
+        if deletekey==0:
+            removedNode = newcell.next
+            self.head=removedNode
+        else:
+            i=0
+            while i<=deletekey-2:
+                newcell = newcell.next
+                i+=1
+            pred = newcell
+            removedNode=pred.next
+            pred.next=removedNode.next
+
+#=================Tester Class==================
+
+#intigers=[10,20,30,40]
+#intigers=MyList(intigers)
+#intigers.showList()
+#print(intigers.isEmpty())
+#print(intigers.clear())
+#intigers.insert(50)
+#intigers.showList()
+#intigers.insert2(50,3)
+#intigers.remove(2)
+#intigers.showList()
+
+#Process finished with exit code 0
+#The End
+
+#===============================================
+#===============================================
+#===============================================
+#===============================================
+
+#Task 03 = 01
+#Code Started
+
+
+class Node:
+    def __init__(self,e,n):
+        self.element=e
+        self.next=n
+class MyList:
+    def __init__(self,a):
+        self.head=None
+        Next = None
+        for i in range (0, len(a)):
+            new= Node(a[i],None)
+            if self.head== None:
+                self.head=new
+                Next=self.head
+            else:
+                Next.next=new
+                Next = new
+    def print(self):
+        if self.head==None:
+            print("EmptyList")
+        else:
+            newcell = self.head
+            while newcell!= None:
+                print(newcell.element, end=" ")
+                newcell=newcell.next
+    def even(self):
+        newNode = self.head
+        h = None
+        t = None
+        while (newNode != None):
+            if (newNode.element % 2 == 0):
+                if(h == None):
+                    h = newNode
+                    t = newNode
+                else:
+                    t.next = newNode
+                    t = newNode
+            newNode = newNode.next
+        self.head = h
+
+#===============================================
+
+#Task 03 = 02
+#Code Started
+
+def check(self, newElem):
+        newcell=self.head
+        while newcell!= None:
+            if newcell.element == newElem:
+               return True
+            newcell=newcell.next
+        return False
+
+#===============================================
+
+#Task 03 = 03
+#Code Started
+
+ def reverse(self):
+        newHead = None
+        new = self.head
+        while(new is not None):
+            nextNode = new.next
+            new.next = newHead
+            newHead = new
+            new = nextNode
+        self.head=newHead
+
+
+#===============================================
+
+#Task 03 = 04
+#Code Started
+
+def sorting(self):   
+        new = self.head;  
+        i = None;           
+        if(self.head == None):  
+            return;  
+        else:  
+            while(new != None):  
+                i = new.next;  
+                  
+                while(i != None):   
+                    if(new.element > i.element):  
+                        temp = new.element;  
+                        new.element = i.element;  
+                        i.element = temp;  
+                    i = i.next;  
+                new = new.next;  
+
+#===============================================
+
+#Task 03 = 05
+#Code Started
+
+def sum(self):
+        s =self.head
+        total=0
+        while s != None:
+            total += s.element
+            s=s.next
+        print (total)
+
+
+#===============================================
+
+#Task 03 = 06
+
+def rotateLeft(self):
+        new =self.head
+        oldHead = new
+        new = new.next
+        tail = new
+        while(tail.next is not None):
+            tail = tail.next
+        tail.next = oldHead
+        oldHead.next = None
+        self.head = new
+    
+    def rotateRight(self):
+        count = 0
+        new = self.head
+        while new is not None:
+            count = count + 1
+            new = new.next
+        i=0
+        dlt = (0)
+        new = self.head
+        count=count-1
+        while i<=count-2:
+            new=new.next
+            i+=1
+        old=new
+        dlt = old.next
+        old.next=dlt .next
+        
+        dlt.next = self.head
+        self.head = dlt
+        
+                   
+    
+    def rotate(self,side,b):
+        if side == "left":
+            i=0
+            while i<b:
+                self.rotateLeft()
+                i+=1
+        
+        else:
+             i=0
+             while i<b:
+                 self.rotateRight()
+                 i+=1 
+ 
+
+ 
+#=================Tester Class==================
+
+#intigers=[1,2,5,3,8]
+#intigers=MyList(intigers)
+#intigers.even()
+#print(intigers.check(7))
+#intigers.reverse()
+#intigers.sum()
+#intigers.rotate("left",2)
+#intigers.rotate("Right",2)
+#intigers.sorting()
+#intigers.print()
+
+#Process finished with exit code 0
+#The End
+
+
+#===============================================
+#===============================================
+#===============================================

@@ -1,0 +1,205 @@
+#===============================================
+#===============================================
+#Name- Moinul Hossain Bhuiyan
+#Id- 20301002
+# CSE 220 Section-06
+#Lab Assignment 03
+#===============================================
+#===============================================
+
+#Task01
+#Code Started
+
+#i
+
+class Node:
+    def __init__(self,val,prev = None,next = None):
+        self.value=val
+        self.prev=prev  
+        self.next=next
+
+#ii
+
+class DoublyList:
+    def __init__(self,a): 
+        self.head = Node(None,None,None)
+        rvn=Node(a[0],None,None)
+        
+        rvn.next=self.head
+        self.head.next=rvn
+        rvn.prev=self.head
+        self.head.prev=rvn
+        for i in range(1,len(a)):
+            m=Node(a[i])
+            rvn.next=m
+            m.prev=rvn
+            rvn=rvn.next
+        rvn.next=self.head
+        self.head.prev=rvn    
+        
+
+#===============================================
+
+#Task02 = 01
+#Code Started
+
+class Node:
+    def __init__(self,val,prev=None,next=None):
+        self.value=val
+        self.prev=prev  
+        self.next=next
+class DoublyList:
+    def __init__(self,a): 
+        self.head=Node(None,None,None)
+        rvn=Node(a[0],None,None)
+        
+        rvn.next=self.head
+        self.head.next=rvn
+        rvn.prev=self.head
+        self.head.prev = rvn
+        for i in range(1,len(a)):
+            m=Node(a[i])
+            rvn.next=m
+            m.prev=rvn
+            rvn=rvn.next
+        rvn.next=self.head
+        self.head.prev=rvn
+
+
+#===============================================
+
+#Task02 = 02
+#Code Started
+
+    def showList(self):
+        node=self.head.next
+        
+        if self.head.next==None:
+            print("Empty List")
+        else:
+            while True:
+              print(node.value)
+              if node.next==self.head:
+                break
+              node= node.next
+
+#===============================================
+
+#Task02 = 03
+#Code Started
+
+    def insert(self, element):
+        rdr=Node(element)
+        tail=self.head.prev
+        tail.next=rdr
+        self.head.prev=rdr
+        rdr.prev=tail
+        rdr.next=self.head
+
+
+#===============================================
+
+#Task02 = 04
+#Code Started
+
+    def insert(self, element, index):
+        i=0
+        prev=0
+        rvn=self.head.next
+        while rvn is not self.head:
+            if self.head.next==element:
+                print("same value exists")
+                prev=1
+                break
+            i += 1
+            rvn = rvn.next
+        if prev != 1:
+            if index < 0 or index > i:
+                print("false index")
+            else:
+                m = self.head
+                rvn = Node(element, None, None)
+                j = 0
+                while j < index:
+                    m = m.next
+                    j += 1
+                k = m.next
+                rvn.next = k
+                rvn.prev = m
+                m.next = rvn
+                k.prev = rvn
+
+#===============================================
+
+#Task02 = 05
+#Code Started
+
+    def remove_index(self, index):
+        i = 0
+        rvn = self.head.next
+        while rvn is not self.head:
+            i += 1
+            rvn = rvn.next
+        if index < 0 or index >= i:
+            print("invalid index")
+        else:
+            p = 0
+            m = self.head.next
+            while p < index:
+                m = m.next
+                p += 1
+            m.prev.next = m.next
+            m.next.prev = m.prev
+    
+
+
+#===============================================
+
+#Task02 = 06
+#Code Started
+
+    def remove(self, deleteKey):
+        count=0
+        node = self.head.next
+        if node != None:
+          count=+1
+          if node.value == deleteKey:
+                self.head = node.next
+                node = None
+                return
+        while node == self.head.next:
+            if node.value == deleteKey:
+                break
+            prev = node
+            node = node.next
+        if node == self.head.next:
+            return
+        prev.next = node.next
+        node = None 
+
+
+
+#=================Tester Class==================
+
+test = DoublyList([5, 7, 9, 2])
+test.showList()
+#print("Output of task 03 is Given Below")
+#test.insert(56)
+#test.showList()
+#print ("Output of task 04 is showed below")
+#test.insert(556, 3)
+#test.showList()
+#print ("Output of task 05 is shown below")
+#test.remove_index(9)
+#test.showList()
+#print ("Output of task 06 is showed below")
+#test.remove("7")
+#test.showList()
+
+#===============================================
+
+#The End
+
+#===============================================
+#===============================================
+#===============================================

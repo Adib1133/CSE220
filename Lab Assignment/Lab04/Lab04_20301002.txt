@@ -1,0 +1,165 @@
+#===============================================
+#===============================================
+#Name- Moinul Hossain Bhuiyan
+#Id- 20301002
+# CSE 220 Section-06
+#Lab Assignment 04
+#===============================================
+#===============================================
+
+#Task01
+#Code Started
+
+#Task01
+
+class Stack:
+    def __init__(self):
+        self.stack= []
+        self.expre_ssion = []
+        self.rdr = -1
+        self.chck = 0
+    def push(self, temp):
+        self.stack += [temp]
+        self.expre_ssion += [self.chck]
+        self.rdr = self.rdr + 1
+    def peek(self):
+        if self.chck==0:
+            print("Stack subsidence flow")
+            return None
+        value=self.expre_ssion[self.rdr]
+        return self.stack[self.rdr]
+    def pop(self):
+        value = self.stack[self.rdr]
+        self.rdr = self.rdr - 1
+        self.stack = self.stack[:-1]
+        return value
+    def check(self, exp):
+        for i in exp:
+            self.chck = self.chck + 1
+            if self.rdr == -1 and i in ")}]":
+                print("This expression is NOT correct.")
+                print("Error at character # ", self.chck, ".", "'", i, "'", "- not opened.", sep="")
+                return
+            elif i in "({[":
+                self.push(i)
+            elif i in ")}]":
+                rvn = self.peek()
+                if i == ")" and rvn == "(":
+                    self.pop()
+                elif i == "}" and rvn == "{":
+                    self.pop()
+                elif i == "]" and rvn == "[":
+                    self.pop()
+                else:
+                    print("This expression is NOT correct.")
+                    print("Error at character # ",self.expre_ssion[self.rdr], ".", "'", rvn, "'", "- not closed.", sep="")
+                    return
+        if self.rdr==-1:
+            print("This expression is correct.")
+        else:
+            print("This expression is NOT correct.")
+            print("Error at character # ", self.expre_ssion[self.rdr], ".", "'", rvn, "'", "- not opened.", sep="")
+exp = input()
+test = Stack()
+test.check(exp)
+
+#Code Ended
+
+
+#===============================================
+
+#Task02
+#Code Started
+
+class Node:
+    def __init__(self, val, next=None):
+        self.value = val
+        self.next = next
+
+class Stack:
+    def __init__(self):
+        self.expre_ssion = []
+        self.arrSize = 0
+        self.rdr = -1
+        self.chck = 0
+        self.head = None
+
+    def push(self, val):
+        if self.head == None:
+            self.head = Node(val)
+        else:
+            n = Node(val)
+            n.next = self.head
+            self.head = n
+
+    def peek(self):
+        return (self.head.value)
+
+    def pop(self):
+        t = self.head
+        self.head = self.head.next
+        t.value = None
+        t.next = None
+
+    def check(self, exp):
+        for i in exp:
+
+            self.chck = self.chck + 1
+            if self.rdr== -1 and i in ")}]":
+                print("This expression is NOT correct.")
+                if(self.arrSize==0):
+                    print("Error at character # ", self.chck, ".", "'", i, "'", "- not opened.", sep="")
+                else:
+                    print("Error at character # ", self.expre_ssion[self.arrSize - 1], ".", "'", i, "'", "- not opened.",sep="")
+                return
+
+            elif i in "({[":
+                self.push(i)
+                self.rdr+=1
+              
+                self.expre_ssion.append(self.chck)
+                self.arrSize += 1
+                
+            elif i in ")}]":
+                rvn = self.peek()
+                if i == ")" and rvn == "(":
+                    self.pop()
+                    self.rdr-=1
+                    self.arrSize-=1
+                elif i == "}" and rvn == "{":
+                    self.pop()
+                    self.rdr -= 1
+                    self.arrSize -= 1
+                elif i == "]" and rvn == "[":
+                    self.pop()
+                    self.rdr -= 1
+                    self.arrSize-=1
+                else:
+                    print("This expression is NOT correct.")
+                    if (self.arrSize == 0):
+                        print("Error at character # ", self.chck, ".", "'", rvn, "'", "- not closed.", sep="")
+                    else:
+                        print("Error at character # ", self.expre_ssion[self.arrSize - 1], ".", "'", rvn, "'", "- not closed.",sep="")
+                    return
+        if self.rdr == -1:
+            print("This expression is correct.")
+        else:
+            print("This expression is NOT correct.")
+            if (self.arrSize == 0):
+                print("Error at character # ", self.chck, ".", "'", i, "'", "- not opened.", sep="")
+            else:
+                print("Error at character # ", self.expre_ssion[self.arrSize - 1], ".", "'", i, "'", "- not opened.", sep="")
+            return
+exp = input()
+test = Stack()
+test.check(exp)
+
+#Code Ended
+
+#===============================================
+
+#The End
+
+#===============================================
+#===============================================
+#===============================================

@@ -1,0 +1,234 @@
+#===============================================
+#===============================================
+#Name- Moinul Hossain Bhuiyan
+#Id- 20301002
+# CSE 220 Section-06
+#Lab Assignment 05
+#===============================================
+#===============================================
+
+#Task01(a)
+#Code Started
+
+def factorial(f):  
+    if f==0:
+        return 1
+    return f*factorial(f-1)
+num = int(input("Enter a Valid Integer: "));
+print(num,"!", "=",factorial(num))
+
+#Task01(b)
+#Code Started
+
+def Fibonacci(n):
+    if n==1:
+        return 1
+    elif n==0:
+        return 0
+    else:
+        return Fibonacci(n-1)+Fibonacci(n-2)
+num = int(input("Enter The Number: "));
+print(Fibonacci(num))
+
+#Task01(c)
+#Code Started
+
+def printarr(array,i):
+    if len(array) == i:
+        return ;
+    else:
+        print(array[i])
+        printarr(array,i+1)
+li = [10,20,30,40,50]
+printarr(li,0)
+
+#Task01(d)
+#Code Started
+
+def powerN(x,y):
+  if y==0 :
+      return 1;
+  else:
+      return x * powerN(x,y-1)
+x = int(input("Enter The Number: ")); 
+y = int(input("Enter The Power Number: "));
+print(powerN(x, y))
+
+#===============================================
+
+#Task02(a)
+#Code Started
+
+x = int(input("Enter The Decimal Number: "));
+def corresponding(n):
+    if n==1:
+        return 1
+    elif n<0:
+        print("Invalid Input Given")
+    elif n == 0:
+        return 0
+    else:
+        return (n % 2 + 10 *corresponding(int(n // 2)))
+if x<0:
+    print("Invalid Input Given")  
+else:
+    print("The Binary Number of",x,"is:",corresponding(x))
+
+
+#Task02(b)
+#Code Started
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+def addition(head):
+    total=0
+    if head != None:
+        total = total + head.data
+        return total + addition(head.next)
+    else:
+        return total;
+head = None
+head = push(head,100)
+head = push(head,20)
+head = push(head,30)
+head = push(head,40)
+head = push(head,50)
+head = push(head,60)
+addition(head)
+
+
+#Task02(C)
+#Code Started
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+def push(head, data):
+    new_node = Node(data)
+    new_node.next = head
+    head = new_node
+    return head
+def reverseorder(head):
+    if head == None:
+        return 0
+    print(head.data), reverseorder(head.next)
+head = None
+head = push(head, 10)
+head = push(head, 20)
+head = push(head, 30)
+head = push(head, 40)
+head = push(head, 50)
+head = push(head, 60)
+reverseorder(head)
+
+
+#===============================================
+
+#Task 03
+#Code Started
+
+def hocBuilder(height):
+    if height==1:
+        return 8
+    elif height==0:
+        return "Do Not Build The House"
+    else :
+        return (5 + hocBuilder(height - 1))
+num = int(input("Enter The Number of Cards: "));
+if num==0:
+    print(hocBuilder(num))
+else:
+    print("The number of cards required is =",hocBuilder(num))
+
+
+#===============================================
+
+
+#Task04(a)
+#Code Started
+
+def left2right(n):
+    if n>0:
+        left2right(n-1)
+        print(n,end=" ")
+    print(" ",end=" ")
+def pattern1(n):
+    if n>1:
+        pattern1(n-1)
+    left2right(n)
+    print()
+num = int(input("Enter The Number: "));
+print("---------------------------------------------")
+print("The Pattern of",(num),"is being Shown below:")
+pattern1(num)
+
+
+#Task04(b)
+#Code Started
+
+def spacess(n):
+    if n==0:
+        return
+    elif n>0:
+      print(end="  ")
+      spacess(n-1)
+    else:
+        return
+def two(n):
+    if n > 0:
+        two(n - 1)
+        print(n, end=" ")
+    else:
+        return
+def one(n1, n2):
+    if n1 > 0:
+        spacess(n1 - 1)
+        two(n2 - n1 + 1)
+        print()
+        one(n1 - 1, n2)
+    else:
+        return
+x = int(input("Enter The 1st Number: "))
+y = int(input("Enter The 2nd Number: ")) 
+print("The Pattern of" ,x,"And", (y), "Is being Shown Below")
+print("---------------------------------------------")
+one(x, y)
+
+
+#===============================================
+
+#Task05
+#Code Started
+
+class FinalQ:
+    def print(self, array, idx):
+        if idx<len(array):
+            profit = self.__calcProfit(array[idx])
+            idx = idx + 1
+            print("{}. Investment: {}; Profit: {}".format(idx, array[idx-1], profit))
+            self.print(array, idx)        
+    def __calcProfit(self, investment):
+        profit =0
+        if investment<=25000:
+            return 0.0
+        if investment>100000:
+            profit=profit+(investment-100000)*0.08
+            profit=profit+(75000*0.045)
+        else:
+            profit=profit+(investment-25000)*0.045
+        return profit
+array = [25000,100000,250000,350000]
+f = FinalQ()
+f.print(array, 0)
+
+
+#===============================================
+#===============================================
+
+#The End
+
+#===============================================
+#===============================================

@@ -1,0 +1,206 @@
+#===============================================
+#===============================================
+#Name- Moinul Hossain Bhuiyan
+#Id- 20301002
+# CSE 220 Section-06
+#Lab Assignment 06
+#===============================================
+#===============================================
+
+#Task 01
+#Code Started
+
+def idx_min(a, i, j):
+    if i == j:
+        return i
+    k = idx_min(a, i + 1, j)
+    return (i if a[i]<a[k]else k)
+def sort(a, n, index=0):
+    if index == n:
+        return -1
+    k = idx_min(a, index, n - 1)
+    if k != index:
+        a[k], a[index] = a[index], a[k]
+    sort(a, n, index + 1)
+print("The Unsorted Given Array is: ")
+array = [6, 5, 34, 32, 3, 22, 1, 0]
+print(array)
+n = len(array)
+print("--------------------------")
+sort(array, n)
+print("The Sorted Array is: ")
+for i in array:
+    print(i, end=' ')
+
+#===============================================
+#===============================================
+
+#Task02
+#Code Started
+
+def insertion(arr, i):
+    if len(arr) > i:
+       sorting(arr,i-1)
+       return insertion(arr,i+1)
+    else:
+        return arr
+def sorting(arr,j):
+    if j >= 0:
+        if (arr[j] > arr[j+1]):
+            x = arr[j]
+            arr[j] = arr[j+1]
+            arr[j+1] = x
+            return sorting(arr, j - 1)
+    else:
+        return arr
+arr = [23,24,64357,446,4767,10]
+print("The Unsorted Array is: ",arr)
+print("------------------------------------------------------")
+print("The Sorted Array Is: ",insertion(arr, 0))
+
+#===============================================
+#===============================================
+
+#Task03
+#Code Started
+
+class Node:
+    def __init__(self, Value = None, next = None):
+        self.Value = Value
+        self.next = next
+class Linkedlist:
+    def __init__(self):
+        self.head = None
+        return
+    def showlist(self):
+        if self.head==None:
+            return
+        else:
+            y = self.head
+            while y!=None:
+                print(y.Value)
+                y=y.next
+    def bubble_sort(self):
+        tmp = None
+        while self.head.next!=tmp:
+            a = self.head
+            while a.next!=tmp:
+                b = a.next
+                if a.Value>b.Value:
+                    b.Value, a.Value = a.Value, b.Value
+                a = a.next
+            tmp = a
+    def push(self, value):
+        node = Node(value)
+        node.next = self.head
+        self.head = node 
+test = Linkedlist()
+arr = [10,80,65,45,40,38]
+for i in arr:
+    test.push(i)    
+print("Not Sorted:", end=" ")
+test.showlist()
+test.bubble_sort()
+print("Sorted:", end=" ")
+test.showlist()
+
+#===============================================
+#===============================================
+
+#Task 04
+#Code Started
+
+class Node:
+    def __init__(self, Value = None, next=None):
+        self.Value = Value
+        self.next = next
+class Linkedlist:
+    def __init__(self):
+        self.head = None
+        next=None    
+    def showlist(self):
+        if self.head==None:
+            return
+        else:
+            y = self.head
+            while y!=None:
+                print(y.Value)
+                y=y.next
+    def selection_sort(self):
+        tmp=self.head
+        while tmp!=None:
+            min=tmp
+            a=tmp.next
+            while a!=None:
+                if a.Value<min.Value:
+                    min=a
+                a=a.next
+            tmp.Value, min.Value = min.Value, tmp.Value
+            tmp = tmp.next
+    def push(self, value):
+        node = Node(value)
+        node.next = self.head
+        self.head = node
+x = Linkedlist()
+arr = [80,50,43,65,45,52]
+print("Not Sorted Ones are:")
+for i in arr:
+    x.push(i)
+x.showlist()
+print("=====================")
+print("Sorted Ones Are:")
+x.selection_sort()
+x.showlist()
+
+#===============================================
+#===============================================
+
+#Task06
+#Code Started
+
+def binary_search(arr,key,head,tail):
+    half=(head+tail)//2
+    if head >=key:
+        return half
+    midItem = arr[half]
+    if midItem < key:
+        head = half + 1
+    if midItem == key:
+        return half
+    else:
+        tail = half - 1
+    return binary_search(arr, key, head, tail)
+arr =[1, 4, 7, 9, 16, 56, 70]
+print("The Given Array is",arr)
+index = binary_search(arr, 9, 0, len(arr))
+print("9th Element is present at Index:",index)  
+
+#===============================================
+#===============================================
+
+#Task07
+#Code Started
+
+def fibonacci(nth):
+    if nth ==1:
+        return nth
+    elif nth ==0:
+        return nth
+    elif nth in memoization:
+        return memoization[nth]
+    else:
+        temp = fibonacci(nth-1) + fibonacci(nth-2)
+    memoization[nth] = temp
+    return temp
+memoization = { }
+n = int(input("Enter The Number: "))
+print(n,"th Fibonacci number is: ", fibonacci(n))
+
+
+#===============================================
+#===============================================
+
+#The End
+
+#===============================================
+#===============================================
